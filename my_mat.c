@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <math.h>
 #define MAX_SIZE 10
- int fakeMatrix[10][10];
+int fakeMatrix[10][10];
 
 int function1(int mat[MAX_SIZE][MAX_SIZE], int size)
 {
@@ -24,7 +24,7 @@ void floydWarshall(int mat[MAX_SIZE][MAX_SIZE])
     {
         for (int j = 0; j < 10; j++)
         {
-          fakeMatrix[i][j]=0;
+          fakeMatrix[i][j]=mat[i][j];
         }
     }
 //check it out
@@ -34,11 +34,11 @@ void floydWarshall(int mat[MAX_SIZE][MAX_SIZE])
         {
             for(int j = 0; j < 10; j++)
             {
-                if (mat[i][j] != 0 && mat[i][k] != 0 && mat[k][j] != 0)
+                if ( fakeMatrix[i][k] != 0 && fakeMatrix[k][j] != 0)
                 {
-                    if(mat[i][j] > mat[i][k] + mat[k][j] || mat[i][j] == 0)
+                    if(fakeMatrix[i][j] > fakeMatrix[i][k] + fakeMatrix[k][j] || fakeMatrix[i][j] == 0)
                     {
-                        fakeMatrix[i][j] =  mat[i][k] + mat[k][j];
+                        fakeMatrix[i][j] =  fakeMatrix[i][k] + fakeMatrix[k][j];
                     }   
                 }
             }
@@ -50,7 +50,7 @@ void floydWarshall(int mat[MAX_SIZE][MAX_SIZE])
 int isTherePath(int mat[MAX_SIZE][MAX_SIZE], int i, int j)
 {
     floydWarshall(mat);
-    if (fakeMatrix[i][j] != 0)
+    if (fakeMatrix[i][j] != 0 && i!=j)
     {
         return 1;
     }
@@ -60,7 +60,7 @@ int isTherePath(int mat[MAX_SIZE][MAX_SIZE], int i, int j)
 int theShortestPath(int mat[MAX_SIZE][MAX_SIZE], int i, int j)
 {
     floydWarshall(mat);
-    if (fakeMatrix[i][j] != 0)
+    if (fakeMatrix[i][j] != 0 && i!=j)
     {
         return fakeMatrix[i][j];
     }
