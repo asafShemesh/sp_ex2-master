@@ -6,8 +6,8 @@
 
 int knapSack (int weights[], int values[] , int selected_bool[]) {
     int mat[num_items+1][bag_max_weight+1]={{0}};
-    for (int i = 0; i < num_items+1; i++) {
-        for (int w = 0; w < bag_max_weight+1; w++) {
+    for (int i = 1; i < num_items+1; i++) {
+        for (int w = 1; w < bag_max_weight+1; w++) {
             if (weights[i - 1] <= w) {
                 int include = values[i - 1] + mat[i - 1][w - weights[i - 1]];
                 int exclude = mat[i - 1][w];
@@ -21,7 +21,7 @@ int knapSack (int weights[], int values[] , int selected_bool[]) {
             }
         }
     int w=20;
-    int susu=mat[num_items][bag_max_weight];
+    int susu=mat[5][20];
     for (size_t i = 5; i > 0 && susu>0 ; i--)
     {
        int was_added = susu != mat[i-1][w];
@@ -38,7 +38,7 @@ int knapSack (int weights[], int values[] , int selected_bool[]) {
 
     }
 
-    return mat[num_items][bag_max_weight];
+    return mat[5][20];
 }
 
 
