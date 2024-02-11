@@ -67,10 +67,10 @@ int result[5]={0};
     int solution = knapsack(weight, values, result);
         printf("Maximum profit: %d\n", solution);
 
-        printf("Selected items: ");
+        printf("Selected items:");
           for (int i = 0; i < 5; i++) {
                 if (result[i] == 1) {
-                 printf("%c ", items[i]);
+                 printf(" %c", items[i]);
               }
          }
 
